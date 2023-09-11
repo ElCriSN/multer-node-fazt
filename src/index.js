@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const multer = require('multer')
 
-const uuid = require('uuid/v4')
+const {v4: uuidv4} = require('uuid')
 
 
 //Initializations
@@ -19,7 +19,7 @@ app.set('view engine', 'ejs')
 const storage = multer.diskStorage({
     destination: path.join(__dirname, 'public/uploads'),
     filename: (req, file, cb) =>{
-        cb(null, uuid() + path.extname(file.originalname).toLocaleLowerCase())
+        cb(null, uuidv4() + path.extname(file.originalname).toLocaleLowerCase())
     }
 })
 
